@@ -1,0 +1,49 @@
+from tkinter import *
+#Функции
+def color_generate(value):
+    red = red_scale.get()
+    green = green_scale.get()
+    blue = blue_scale.get()
+    color = f'#{red:02x}{green:02x}{blue:02x}'
+    label1['bg']= color
+    label1['text'] = color
+    сopy.delete(0,END)
+    сopy.insert(0, color)
+    red2 = 255 - red
+    green2 = 255 - green
+    blue2 = 255 - blue
+    color2 = f'#{red2:02x}{green2:02x}{blue2:02x}'
+    label1['fg']= f'#{red2:02x}{green2:02x}{blue2:02x}'
+# Настройки окна
+window = Tk()
+window.geometry('550x300')
+window.title('Color picker')
+window.maxsize(550,300)
+window.minsize(550,300)
+frame_RGB = LabelFrame(text='Выберите цвета', width = 250,height = 250)
+frame_RGB.place(x=15,y=20)
+frame_color = LabelFrame(text='Полученный цвет', width = 250,height = 250)
+frame_color.place(x=290,y=20)
+label1 = Label(frame_color,text='#000000',bg='black',font = ('Arial',15,'bold'),
+               fg = 'white',width = 16, height = 7)
+label1.place(x=25,y=20)
+сopy = Entry(frame_color,width=23 ,justify= CENTER,bg='white',fg='black')
+сopy.place(x=55,y=200)
+red_scale = Scale(frame_RGB,from_ = 0,to = 255,resolution =1,
+                  orient=HORIZONTAL,label='Красный',
+                  width=20,length=200,
+                  fg='red',activebackground='red',
+                  command=color_generate)
+red_scale.place(x=10,y=10)
+green_scale = Scale(frame_RGB,from_ = 0,to = 255,resolution =1,
+                  orient=HORIZONTAL,label='Зелёный',
+                  width=20,length=200,
+                  fg='green',activebackground='green',
+                  command=color_generate)
+green_scale.place(x=10,y=75)
+blue_scale = Scale(frame_RGB,from_ = 0,to = 255,resolution =1,
+                  orient=HORIZONTAL,label='Синий',
+                  width=20,length=200,
+                  fg='blue',activebackground='blue',
+                  command=color_generate)
+blue_scale.place(x=10,y=140)
